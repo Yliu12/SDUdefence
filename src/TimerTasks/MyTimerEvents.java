@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import Frame.BattleField;
 import Frame.Game;
+import GameObjects.Cannonball;
 
 public class MyTimerEvents extends TimerTask{
 
@@ -24,7 +25,11 @@ public class MyTimerEvents extends TimerTask{
 	}
 
 	
-	
+	private synchronized void moveCannonballs() {
+
+		for (Cannonball c : Game.cannonballList) {
+			c.setLocationAfterMovement();
+		}
 	
 	
 	

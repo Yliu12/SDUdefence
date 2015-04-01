@@ -23,6 +23,11 @@ public class Testpanel extends JFrame implements KeyListener, MouseListener {
 	private int mouseY = 0;
 	private Trig t = new Trig();
 	Computer com = new Computer();
+	private boolean left;
+	private boolean right;
+	private boolean up;
+	private boolean down;
+	
 	
 
 	/**
@@ -68,6 +73,7 @@ public class Testpanel extends JFrame implements KeyListener, MouseListener {
 		int key = e.getKeyCode(); // 获取按键码
 		switch (key) {
 		case KeyEvent.VK_UP: // 向上
+			up = true;
 			y -= 10;
 			break;
 		case KeyEvent.VK_DOWN:
@@ -89,11 +95,22 @@ public class Testpanel extends JFrame implements KeyListener, MouseListener {
 
 		this.repaint();
 
+		
+		
+		
+		
+		
 	}
 
-	public void keyReleased(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		int i = e.getKeyCode();  
+	       switch(i) {  
+	           case  KeyEvent.VK_LEFT :  left=false;  break;  
+	           case  KeyEvent.VK_UP :   up= false;break;  
+	           case  KeyEvent.VK_DOWN :down = false; break;  
+	           case  KeyEvent.VK_RIGHT : right = false;break;  
+	       }  
 	}
 
 	public void keyTyped(KeyEvent arg0) {

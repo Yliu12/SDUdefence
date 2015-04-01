@@ -1,5 +1,6 @@
 package Frame;
 
+import gameObject.Cannonball;
 import gameObject.Computer;
 
 import java.awt.Graphics;
@@ -13,8 +14,12 @@ import java.awt.event.KeyListener;
 
 
 
+
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+
 
 
 
@@ -47,20 +52,21 @@ public void paint(Graphics g){
 	
 	//g.clearRect(0,0, 400, 600);
 	drawComputer(g,Computer.getLocation());
-
+	drawCannonballs(g);
 }
 
 public void drawComputer(Graphics g, Point atPoint) {
 	Image computer =Computer.ComputerImg;
+
 	g.drawImage(computer, (int) atPoint.getX(), (int) atPoint.getY(),
 			null);
+	
 }
 	
 	@Override
-	public void keyPressed(KeyEvent e) {
-		
-		
+	public void keyPressed(KeyEvent e) {		
 		// TODO Auto-generated method stub
+		
 		int key = e.getKeyCode(); 
 		switch (key) {
 		case KeyEvent.VK_W: 
@@ -104,14 +110,16 @@ public void drawComputer(Graphics g, Point atPoint) {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public synchronized void drawCannonballs(Graphics g) {
+		for (int n = 0; n < Game.cannonballList.size(); n++) {
+			Cannonball cannonball = Game.cannonballList.get(n);
+			Image cannonImage = Cannonball.IMAGE;
+			Point cannonLocation = cannonball.getLocation();
+			g.drawImage(cannonImage, (int) cannonLocation.getX(),
+					(int) cannonLocation.getY(), null);
+		}
+
+	}
 	
 
 }
