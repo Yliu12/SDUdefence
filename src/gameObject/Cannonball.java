@@ -105,6 +105,12 @@ public class Cannonball{
 	*/
 	public boolean isOutOfBounds()
 	{
+		int x = (int) location.getX();
+		int y = (int) location.getY();
+		if(x>800||x<=0)
+			outOfBounds = true;
+		if(y>1000||y<=0)
+			outOfBounds = true;
 		return outOfBounds;
 	}
 

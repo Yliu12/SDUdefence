@@ -40,7 +40,7 @@ public class Testpanel extends JFrame implements KeyListener, MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	public Testpanel() {
-		this.setSize(600, 400);
+		this.setSize(1000, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.addKeyListener(this);
@@ -61,7 +61,7 @@ public class Testpanel extends JFrame implements KeyListener, MouseListener {
 
 	public void paint(Graphics g) {
 		g = this.getGraphics();
-		g.clearRect(0, 0, 600, 400);
+		g.clearRect(0, 0, 1000, 800);
 		// g.fillOval(x,y,40, 40);
 		g.drawImage(Computer.getImage(), (int) com.getLocation().x,
 				(int) com.getLocation().y, null);
