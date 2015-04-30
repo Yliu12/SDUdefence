@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 
 //import Frame.DisplayFrame;
 
+
+import Frame.GameFrame;
 import physics.Trig;
 
 public class Cannonball{
@@ -107,11 +109,23 @@ public class Cannonball{
 	{
 		int x = (int) location.getX();
 		int y = (int) location.getY();
-		if(x>800||x<=0)
+		if(x>GameFrame.DEFAULT_SIZE.getWidth()||x<=0)
 			outOfBounds = true;
-		if(y>1000||y<=0)
+		if(y>GameFrame.DEFAULT_SIZE.getHeight()||y<=0)
 			outOfBounds = true;
 		return outOfBounds;
 	}
+	public boolean isatBase()
+	{
+		boolean atBase =false;
+		
+		int y = (int) location.getY();
+		
+		if(y>950)
+			atBase = true;
+		return atBase;
+	}
+	
+	
 
 }

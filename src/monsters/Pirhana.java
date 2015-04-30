@@ -23,12 +23,13 @@ public class Pirhana extends MonsterSuper{
 		super(startingPoint);
 		super.image=DEFAULT_IMAGE;
 		super.image2=DEFAULT_IMAGE2;
-		super.damage=3;
+		super.damage=1;
 		super.velocity=2;
 		super.minCoinsPerKill=2;
 		super.maxCoinsPerKill=4;
 		super.maxHP=1;
 		super.HP=maxHP;
+		super.Score = 10;
 	}
 
 	@Override

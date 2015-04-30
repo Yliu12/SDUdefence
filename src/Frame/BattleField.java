@@ -49,10 +49,20 @@ public class BattleField extends JPanel implements  MouseListener, ActionListene
 	public static boolean DPressed;
 	public static boolean JPressed;
 	public static boolean KPressed;
-
-
+	public static JLabel lblHP = new JLabel();
+	public static JLabel lblScore = new JLabel();
 public BattleField(){
 	
+	
+	
+	
+	lblHP.setText(Computer.currentHP+"");
+	lblScore.setText(Game.Score+"");
+	lblScore.setBounds(30, 30, 100, 80);
+	lblHP.setBounds(30, 50, 100, 80);
+	lblHP.setVisible(true);
+	this.add(lblHP);
+	this.add(lblScore);
 	
 	InputMap im = this.getInputMap(JPanel.WHEN_IN_FOCUSED_WINDOW);
 	ActionMap am = this.getActionMap();
@@ -77,22 +87,23 @@ public BattleField(){
 
 	
 	
-	this.setSize(800,1000);
+	this.setSize(GameFrame.DEFAULT_SIZE);
 	this.setLayout(null);
 	//this.setOpaque(false);
 	//this.addKeyListener(this);
 	this.addMouseListener(this);
 	this.setVisible(true);
 	this.setFocusable(true);
-	repaint();
+	//repaint();
 }
 
 public void paint(Graphics g){
-	
+	 super.paint(g);
 	//g.clearRect(0,0, 800, 1000);
 	drawComputer(g,Computer.getLocation());
 	drawCannonballs(g);
 	drawTestMonsters(g);
+	
 }
 
 	public void drawTestMonsters(Graphics g) {

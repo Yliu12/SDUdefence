@@ -22,15 +22,16 @@ import Frame.GameFrame;
 public class MonsterSuper implements MonsterType{
 	//Logger logger = Logger.getLogger(MonsterSuper.class);
 
-	public static final String DEFAULT_IMAGE_LOCATION = "gfx/monster.png";
+	public static final String DEFAULT_IMAGE_LOCATION = "pic/monster.png";
 	public static final Image DEFAULT_IMAGE = new ImageIcon(DEFAULT_IMAGE_LOCATION).getImage();
-	public static final String DEFAULT_IMAGE_LOCATION2 = "gfx/monster3.png";
+	public static final String DEFAULT_IMAGE_LOCATION2 = "pic/monster.png";
 	public static final Image DEFAULT_IMAGE2 = new ImageIcon(DEFAULT_IMAGE_LOCATION2).getImage();
 	public static final int NUMBER_OF_POWERUPS=3;
 	public static final double POWER_UP_CHANCE=0.02;
 	public static final int HEALTH=1;
 	public static final int GHOST=2;
 	public static final int CANNON=3;
+	public int Score = 10;
 	public int maxCoinsPerKill=4;
 	public int minCoinsPerKill=1;
 	protected Image image;
@@ -47,7 +48,7 @@ public class MonsterSuper implements MonsterType{
 	public int maxHP=1;
 	public int HP=maxHP;
 	public boolean givesPowerup;
-
+ 
 	
 	
 	public MonsterSuper(Point startingPoint)
@@ -63,10 +64,10 @@ public class MonsterSuper implements MonsterType{
 		int x;
 		int y;
 		
-		int maxY =(int) (1000+10);
-		int minY =-10 - DEFAULT_IMAGE.getHeight(null);
-		int maxX = (int) (800);
-		int minX=-10-DEFAULT_IMAGE.getWidth(null);
+		int maxY =(int) (GameFrame.DEFAULT_SIZE.getHeight()- DEFAULT_IMAGE.getHeight(null)-20);
+		int minY =0;
+		int maxX = (int) (GameFrame.DEFAULT_SIZE.getWidth()- DEFAULT_IMAGE.getWidth(null)-60);
+		int minX=0;
 		
 		double random = Math.random();
 		
@@ -92,7 +93,7 @@ public class MonsterSuper implements MonsterType{
 			y=(int)(random2*maxY);
 		}
 		
-		location.setLocation(x, 0);
+		location.setLocation(x, 70);
 		return location;
 			
 	}
@@ -158,7 +159,32 @@ public class MonsterSuper implements MonsterType{
 
 		return monsterRect;
 	}
-
+	public boolean isOutOfBounds() {
+	boolean outOfBounds = false;
+		{
+			int x = (int) location.getX();
+			int y = (int) location.getY();
+			if(x>GameFrame.DEFAULT_SIZE.getWidth()- DEFAULT_IMAGE.getWidth(null)-50||x<=0)
+				outOfBounds = true;
+			if(y>GameFrame.DEFAULT_SIZE.getHeight()-DEFAULT_IMAGE.getHeight(null)-50||y<=0)
+				outOfBounds = true;
+			return outOfBounds;
+		}
+		
+		
+	}
+	@Override
+	public boolean isAtBottom()
+	{
+		boolean atBase =false;
+		
+		int y = (int) location.getY();
+		
+		if(y>GameFrame.DEFAULT_SIZE.getHeight()- DEFAULT_IMAGE.getHeight(null))
+			atBase = true;
+		return atBase;
+	}
+	
 /*	@Override
 	public Coin[] getLoot() {
 		double coinRandom = Math.random();
@@ -285,5 +311,11 @@ public class MonsterSuper implements MonsterType{
 	{
 		HP=i;
 	}
+	@Override
+	public int getScore() {
+		// TODO Auto-generated method stub
+		return Score;
+	}
+
 	
 }

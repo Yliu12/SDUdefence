@@ -2,6 +2,8 @@ package Game;
 import gameObject.Cannonball;
 
 
+
+
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +14,13 @@ import java.util.Timer;
 
 
 
+
+
 import monsters.MonsterType;
 import monsters.TestMonster;
 import Frame.BattleField;
 import Frame.GameFrame;
+import Frame.StartPanel;
 import TimerTasks.SpawnTask;
 import TimerTasks.StopWatch;
 import TimerTasks.MyTimerEvents;
@@ -38,6 +43,7 @@ public static List<Cannonball> cannonballList = Collections.synchronizedList(new
 //public static ArrayList<Fireball>fireballList=new ArrayList<Fireball>();
 //public static ArrayList<MonsterType> monsterTestList= new ArrayList<MonsterType>();
 public static StopWatch cannonwatch = new StopWatch();
+public static int Score=0;
 
 static Timer timer = new Timer();
 
@@ -45,27 +51,40 @@ static Timer timer = new Timer();
 public static int phase = 1;
 
 public static ArrayList<MonsterType> monsterTestList= new ArrayList<MonsterType>();
+public static TestMonster monsterTest = new TestMonster(GameFrame.getCenter());
 
-public static TestMonster monsterTest = new TestMonster(new Point(0,0));
-
-
-	
-
+static BattleField bf = new BattleField();
+static StartPanel sp = new StartPanel();
 	public static void main(String[] args){
 
 		frame=new GameFrame();
-		BattleField bf = new BattleField();
-		frame.getContentPane().add(bf);
+		
+		
+		//BattleField bf = new BattleField();
+		frame.getContentPane().add(sp);
 		frame.setVisible(true);
-		startNewGame();
+		//startNewGame();
 
 		
 	}
 	
 	
 public static void startNewGame(){
+	Score = 0;
+	timer = new Timer();
+	cannonwatch = new StopWatch();
 	timer.schedule(new MyTimerEvents(), 0, 15l);
-	timer.schedule(new SpawnTask(), 800l, 800l);
+	timer.schedule(new SpawnTask(), 1000, 1000);
+	frame.getContentPane().remove(bf);
+	bf = new BattleField();
+	frame.getContentPane().add(bf, 0);
+	bf.requestFocusInWindow();
+	phase = 1;
+	frame.getContentPane().remove(sp);
+	//frame.getContentPane().remove(winScreen);
+	//frame.getContentPane().remove(gameOverScreen);
+	frame.repaint();
+	
  }
 public static void unpause(){
 	

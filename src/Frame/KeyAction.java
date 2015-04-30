@@ -65,7 +65,7 @@ public class KeyAction extends AbstractAction {
 				Game.phase = 0;Game.frame.validate();}
 			else{
 				Game.unpause();Game.frame.validate();
-			}System.out.println(Game.phase);
+			}
 		} 
 //System.out.println(Computer.Xmove+" "+Computer.Ymove);
 	}

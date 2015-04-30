@@ -26,7 +26,9 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-import Game.CollisionChecker;
+
+import Frame.GameFrame;
+
 
 public class Computer {
 	
@@ -157,7 +159,7 @@ public static void nudge(int directionCode) {
 		yvelocity = -1 * MAX_SPEED;
 	}
 	
-	System.out.println(yvelocity);
+
 }
 
 
@@ -168,8 +170,9 @@ public static Point getLocationAfterMovement() {
 	
 	double newLocationX = Location.x;
 	double newLocationY = Location.y;
-	int maxX = 700;
-	int maxY = 900;
+	int maxX = (int) GameFrame.DEFAULT_SIZE.getWidth()-getDimension().width-10;
+	int maxY = (int) GameFrame.DEFAULT_SIZE.getHeight()
+			- getDimension().height-30;
 	int minX = 0;
 	int minY = 0;
 

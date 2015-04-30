@@ -26,7 +26,8 @@ public interface MonsterType {
 	public int getDirection();
 
 	Point getNextMove();
-
+	public boolean isAtBottom();
+	
 	public void setLocationAfterMovement();
 
 	public Rectangle getRect();
@@ -51,4 +52,6 @@ public interface MonsterType {
 
 	public void setHealth(int i);
 	public int getMaxHP();
+
+	public int getScore();
 }

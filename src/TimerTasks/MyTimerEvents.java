@@ -22,6 +22,11 @@ public class MyTimerEvents extends TimerTask{
 		CollisionChecker.detectCollisions();
 		//System.out.println(Computer.Location.toString());
 		Game.frame.repaint();}
+		BattleField.lblHP.setText("HP    "+Computer.currentHP+"");
+		BattleField.lblScore.setText("Score   "+Game.Score+"");
+		BattleField.lblHP.repaint();
+		BattleField.lblScore.repaint();
+		
 	}
 
 	private void moveShip() {

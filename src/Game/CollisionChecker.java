@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 
+
+import Frame.BattleField;
 import monsters.MonsterSuper;
 
 
@@ -11,7 +13,6 @@ import monsters.MonsterSuper;
 
 
 import gameObject.Cannonball;
-
 import gameObject.Computer;
 
 
@@ -77,16 +78,43 @@ public class CollisionChecker {
 /**/
 	public static synchronized void detectCannonEdgeCollision() {
 	Cannonball c;
-		for (int n = 0; n < Game.cannonballList.size();) {
+		for (int n = 0; n < Game.cannonballList.size();n++) {
 
 			c = Game.cannonballList.get(n);
-			c.isOutOfBounds();
-			if (c.outOfBounds) {
+			if (c.isOutOfBounds()) {
 				Game.cannonballList.remove(c);
+
 				//logger.info("remove cannonball");
-			} else
-				n++;
+			} 
+				
 		}
+	}
+	public static synchronized void detectMonsterEdgeCollision() {
+	
+	for (int n = 0; n < Game.monsterTestList.size();n++) {
+		MonsterSuper m = (MonsterSuper) Game.monsterTestList.get(n);
+			
+			if (m.isOutOfBounds()) {
+				Game.monsterTestList.remove(m);
+				System.out.println(Computer.currentHP);
+				//logger.info("remove cannonball");
+			} 
+		}
+	}
+	public static synchronized void detectMonsterBaseCollision() {
+		for (int n = 0; n < Game.monsterTestList.size();n++) {
+			MonsterSuper m = (MonsterSuper) Game.monsterTestList.get(n);
+			if (m.isAtBottom()){
+				Computer.currentHP--;
+				Game.monsterTestList.remove(m);
+				System.out.println(Computer.currentHP );
+			}
+		
+		}
+		
+		
+		
+		
 	}
 	/*
 	public static void detectFireballEdgeCollision() {
@@ -128,29 +156,35 @@ public class CollisionChecker {
 			monsterRect = Game.monsterTestList.get(n).getRect();
 			if (Computer.intersects(monsterRect)) {
 				//logger.debug("ship collided with monster");
-				if (!Computer.getIfgetComputer())
-					//Computer.currentHP -= Game.monsterTestList.get(n)
-							//.getDamage()
-					;
+				if (!Computer.getIfgetComputer()){
+					Computer.currentHP -= Game.monsterTestList.get(n)
+							.getDamage();
+				System.out.println(Computer.currentHP);}
 				else {
 					Computer.HitTimesOfMonsters++;
+					
 					Computer.detectIFgetComputerEnd();
+					
 					//logger.info("Ship's shield number is used: "
 							//+ Computer.HitTimesOfMonsters);
 				}
 				Game.monsterTestList.remove(m);
 			//	logger.info("HP = " + Computer.currentHP);
-				if (!Computer.isAlive())
-					;
+				
 					//Game.gameOver();
 			} else
 				n++;
 		}
+		
+		if (!Computer.isAlive())
+			Game.phase = 0;
+			
+			
 	}
 
 	public static synchronized void detectCannonTestMonsterCollision() {
 		Cannonball cannon;
-		int powerUpCode;
+		
 		for (int n = 0; n < Game.cannonballList.size();) {
 			cannon = Game.cannonballList.get(n);
 			Rectangle cannonRect = cannon.getRect();
@@ -160,6 +194,7 @@ public class CollisionChecker {
 				Rectangle monsterRect = Game.monsterTestList.get(m).getRect();
 				Point p = Game.monsterTestList.get(m).getLocation();
 				if (monsterRect.intersects(cannonRect)) {
+					Game.Score += Game.monsterTestList.get(m).getScore();
 					Game.monsterTestList.get(m).takeDamage(1);
 					if (Game.monsterTestList.get(m).isDead()) {
 						
@@ -273,9 +308,12 @@ public class CollisionChecker {
 */
 	public static void detectCollisions() {
 		//detectCoinShipCollision();
+		detectMonsterBaseCollision();
+	//	detectMonsterEdgeCollision() ;
 		detectShipTestMonsterCollision();
 		detectCannonTestMonsterCollision();
 		detectCannonEdgeCollision();
+	
 		//detectShipHPPCollision();
 		//detectShipGSCollision();
 		//detectShipWhirlpoolCollision();
