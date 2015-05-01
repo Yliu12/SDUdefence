@@ -2,11 +2,10 @@ package Game;
 
 
 
+
 import monsters.Pirhana;
 import monsters.TestMonster;
-import monsters.Turtle;
-
-public class MonsterSpawner {
+ public class MonsterSpawner {
 
 //	private static Logger logger=Logger.getLogger(MonsterSpawner.class);
 	double random = Math.random();
@@ -28,7 +27,7 @@ public class MonsterSpawner {
 		for( int n=0; n<i; n++)
 		{
 		double rand=	Math.random();
-		if (rand<0.5)
+		if (rand<0.75)
 			Game.monsterTestList.add(new TestMonster(TestMonster.getRandomSpawnLocation()));
 		else 
 			Game.monsterTestList.add(new Pirhana(Pirhana.getRandomSpawnLocation()));
@@ -44,8 +43,7 @@ public class MonsterSpawner {
 			Game.monsterTestList.add(new Pirhana(Pirhana.getRandomSpawnLocation()));
 		else if (ID==2)
 			Game.monsterTestList.add(new TestMonster(TestMonster.getRandomSpawnLocation()));
-		else if (ID==3)
-			Game.monsterTestList.add(new Turtle(Turtle.getRandomSpawnLocation()));
+		
 		}
 	}
 	private static void spawnWaveDifficulty100() {

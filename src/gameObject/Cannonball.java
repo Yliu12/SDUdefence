@@ -18,7 +18,7 @@ import physics.Trig;
 public class Cannonball{
 	//Logger logger = Logger.getLogger(Cannonball.class);
 
-	public static final String DEFAULT_IMAGE_LOCATION = "Pic/CannonBall.jpg";
+	public static final String DEFAULT_IMAGE_LOCATION = "Pic/bullet.png";
 
 	public static final Image IMAGE = new ImageIcon(DEFAULT_IMAGE_LOCATION)
 			.getImage();
@@ -109,9 +109,9 @@ public class Cannonball{
 	{
 		int x = (int) location.getX();
 		int y = (int) location.getY();
-		if(x>GameFrame.DEFAULT_SIZE.getWidth()||x<=0)
+		if(x>GameFrame.DEFAULT_SIZE.getWidth()||x<-5)
 			outOfBounds = true;
-		if(y>GameFrame.DEFAULT_SIZE.getHeight()||y<=0)
+		if(y>GameFrame.DEFAULT_SIZE.getHeight()||y<0)
 			outOfBounds = true;
 		return outOfBounds;
 	}

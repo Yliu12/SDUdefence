@@ -32,6 +32,9 @@ import javax.swing.KeyStroke;
 
 import monsters.TestMonster;
 import Game.Game;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
 
 
 
@@ -52,14 +55,18 @@ public class BattleField extends JPanel implements  MouseListener, ActionListene
 	public static JLabel lblHP = new JLabel();
 	public static JLabel lblScore = new JLabel();
 public BattleField(){
+	lblHP.setForeground(Color.WHITE);
+	lblHP.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	
 	
 	
 	
 	lblHP.setText(Computer.currentHP+"");
+	lblScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	lblScore.setForeground(Color.WHITE);
 	lblScore.setText(Game.Score+"");
-	lblScore.setBounds(30, 30, 100, 80);
-	lblHP.setBounds(30, 50, 100, 80);
+	lblScore.setBounds(30, 30, 100, 30);
+	lblHP.setBounds(30, 50, 100, 30);
 	lblHP.setVisible(true);
 	this.add(lblHP);
 	this.add(lblScore);
@@ -94,6 +101,11 @@ public BattleField(){
 	this.addMouseListener(this);
 	this.setVisible(true);
 	this.setFocusable(true);
+	
+	JLabel label = new JLabel("");
+	label.setIcon(new ImageIcon("C:\\Users\\YLIU12\\Desktop\\battleField.png"));
+	label.setBounds(0, 0, 540, 720);
+	add(label);
 	//repaint();
 }
 
@@ -225,6 +237,4 @@ public void drawComputer(Graphics g, Point atPoint) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }
