@@ -27,12 +27,14 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 
+
 import Frame.GameFrame;
 
 
 public class Computer {
 	
-	public static Image 	ComputerImg = new ImageIcon("pic/Computer.jpg").getImage();
+	public static String imgLocation = "pic/debugger3.png";
+	public static Image ComputerImg = new ImageIcon(imgLocation).getImage();
 
 	public static Point Location = new Point(200,800);
 	public static int Xmove = 0;
@@ -59,11 +61,15 @@ public class Computer {
 
 	public static int currentHP = START_HP;
 	
+	
 public Computer(){
 
 	
 }
 	
+public static void ChangeImg(String loc){
+	ComputerImg = new ImageIcon(loc).getImage();
+	}
 public  static Dimension getDimension(){
 	Dimension d = new Dimension();
 	double width = ComputerImg.getWidth(null);
