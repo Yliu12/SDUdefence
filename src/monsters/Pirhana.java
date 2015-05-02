@@ -11,7 +11,6 @@ import physics.Trig;
 
 
 public class Pirhana extends MonsterSuper{
-	//Logger logger = Logger.getLogger(Pirhana.class);
 
 	public static String DEFAULT_IMAGE_LOCATION = "pic/PiratePirhana1.png";
 	public static Image DEFAULT_IMAGE = new ImageIcon(DEFAULT_IMAGE_LOCATION).getImage();

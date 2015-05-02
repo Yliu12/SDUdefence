@@ -4,9 +4,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-
 public interface MonsterType {
-	//Logger logger = Logger.getLogger(MonsterType.class);
+	// Logger logger = Logger.getLogger(MonsterType.class);
 
 	public String DEFAULT_IMAGE_LOCATION = "";
 	public static final int HEALTH = 1;
@@ -26,13 +25,12 @@ public interface MonsterType {
 	public int getDirection();
 
 	Point getNextMove();
+
 	public boolean isAtBottom();
-	
+
 	public void setLocationAfterMovement();
 
 	public Rectangle getRect();
-
-	//public Coin[] getLoot();
 
 	public void phaseShift();
 
@@ -51,6 +49,7 @@ public interface MonsterType {
 	public void setVelocity(int i);
 
 	public void setHealth(int i);
+
 	public int getMaxHP();
 
 	public int getScore();

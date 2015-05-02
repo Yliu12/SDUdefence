@@ -11,12 +11,10 @@ import javax.swing.ImageIcon;
 
 //import Frame.DisplayFrame;
 
-
 import Frame.GameFrame;
 import physics.Trig;
 
-public class Cannonball{
-	//Logger logger = Logger.getLogger(Cannonball.class);
+public class Cannonball {
 
 	public static final String DEFAULT_IMAGE_LOCATION = "Pic/bullet.png";
 
@@ -27,62 +25,55 @@ public class Cannonball{
 			IMAGE.getWidth(null), IMAGE.getHeight(null));
 
 	public static final double VELOCITY = 10;
-	
+
 	private Point location;
 	private Point startingPoint;
 	public boolean outOfBounds = false;
 	public int angleInDegrees;
-	
+
 	public Cannonball(Point centerPoint, Point DestinationLocation) {
 		this.location = getLocationFromCenter(centerPoint);
-		this.startingPoint=centerPoint;
-		startingPoint.setLocation(centerPoint.getX(), centerPoint.getY()+10);
+		this.startingPoint = centerPoint;
+		startingPoint.setLocation(centerPoint.getX(), centerPoint.getY() + 10);
 		outOfBounds = false;
-		angleInDegrees=getDirection(DestinationLocation);
-		//timer = new Timer(0, this);
-	}
-	
-	
-	public Cannonball(Point centerPoint) {
-		this.location = getLocationFromCenter(centerPoint);
-		this.startingPoint=centerPoint;
-		startingPoint.setLocation(centerPoint.getX(), centerPoint.getY()+10);
-		outOfBounds = false;
-		Point dest = new Point(centerPoint.x,0);					
-		angleInDegrees=getDirection(dest);
-		//timer = new Timer(0, this);
+		angleInDegrees = getDirection(DestinationLocation);
+
 	}
 
-	public int getDirection(Point mouseLocation)
-	{
+	public Cannonball(Point centerPoint) {
+		this.location = getLocationFromCenter(centerPoint);
+		this.startingPoint = centerPoint;
+		startingPoint.setLocation(centerPoint.getX(), centerPoint.getY() + 10);
+		outOfBounds = false;
+		Point dest = new Point(centerPoint.x, 0);
+		angleInDegrees = getDirection(dest);
+
+	}
+
+	public int getDirection(Point mouseLocation) {
 		return Trig.getAngleInDegrees(startingPoint, mouseLocation);
 	}
 
-	
-	
-	private Point getNextMove()
-	{
-		Point nextMove=new Point();
-		nextMove=Trig.getNextMoveAtAngle(location, angleInDegrees, VELOCITY);
+	private Point getNextMove() {
+		Point nextMove = new Point();
+		nextMove = Trig.getNextMoveAtAngle(location, angleInDegrees, VELOCITY);
 		return nextMove;
 	}
-	
-	public synchronized void setLocationAfterMovement()
-	{
-		location=getNextMove();
+
+	public synchronized void setLocationAfterMovement() {
+		location = getNextMove();
 	}
-	
+
 	public Point getLocation() {
 		return location;
 	}
-	
-	public Point getLocationFromCenter(Point center)
-	{
-		Point location= new Point();
-		int x=(int) (center.getX()-IMAGE.getWidth(null)/2);
-		int y=(int) (center.getY()-IMAGE.getHeight(null)/2);
-		
-		location.setLocation(x,y);
+
+	public Point getLocationFromCenter(Point center) {
+		Point location = new Point();
+		int x = (int) (center.getX() - IMAGE.getWidth(null) / 2);
+		int y = (int) (center.getY() - IMAGE.getHeight(null) / 2);
+
+		location.setLocation(x, y);
 		return location;
 	}
 
@@ -95,37 +86,25 @@ public class Cannonball{
 
 		return cannonRect;
 	}
-	/*
-	public void checkIfOutOfBounds(){
-		int maxX = (int) DisplayFrame.DEFAULT_SIZE.getWidth();
-		int maxY = (int) DisplayFrame.DEFAULT_SIZE.getHeight();
-		
-		if(this.getRect().x > maxX || this.getRect().y > maxY || this.getRect().x+this.getRect().getWidth() < 0 || this.getRect().y +this.getRect().getHeight()< 0){
-			outOfBounds = true;
-		}
-	}
-	*/
-	public boolean isOutOfBounds()
-	{
+
+	public boolean isOutOfBounds() {
 		int x = (int) location.getX();
 		int y = (int) location.getY();
-		if(x>GameFrame.DEFAULT_SIZE.getWidth()||x<-5)
+		if (x > GameFrame.DEFAULT_SIZE.getWidth() || x < -5)
 			outOfBounds = true;
-		if(y>GameFrame.DEFAULT_SIZE.getHeight()||y<0)
+		if (y > GameFrame.DEFAULT_SIZE.getHeight() || y < 0)
 			outOfBounds = true;
 		return outOfBounds;
 	}
-	public boolean isatBase()
-	{
-		boolean atBase =false;
-		
+
+	public boolean isatBase() {
+		boolean atBase = false;
+
 		int y = (int) location.getY();
-		
-		if(y>950)
+
+		if (y > 950)
 			atBase = true;
 		return atBase;
 	}
-	
-	
 
 }

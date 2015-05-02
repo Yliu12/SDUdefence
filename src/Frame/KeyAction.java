@@ -4,10 +4,6 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-
-//import org.apache.log4j.Logger;
-
-
 import java.net.MalformedURLException;
 
 import Game.Game;
@@ -18,7 +14,6 @@ import gameObject.Computer;
 public class KeyAction extends AbstractAction {
 	private static final long serialVersionUID = 1L;
 
-	// private static Logger logger = Logger.getLogger(KeyAction.class);
 
 	private String cmd;
 	private java.applet.AudioClip cannonClip;
@@ -54,9 +49,7 @@ public class KeyAction extends AbstractAction {
 				synchronized (Game.cannonballList) {
 					Game.cannonballList.add(cannon);
 				}
-				// logger.debug("cannonball angle " +
-				// Game.cannonballList.get(Game.cannonballList.size() -
-				// 1).angleInDegrees);
+
 
 			}
 		}if (cmd.equals("P")) {
@@ -67,7 +60,7 @@ public class KeyAction extends AbstractAction {
 				Game.unpause();Game.frame.validate();
 			}
 		} 
-//System.out.println(Computer.Xmove+" "+Computer.Ymove);
+
 	}
 
 	private java.applet.AudioClip makeSound(String location) {

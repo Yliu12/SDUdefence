@@ -14,7 +14,6 @@ public class SpawnTask extends TimerTask {
 		if (Game.phase==1)
 		{
 			MonsterSpawner.spawnWave(1, 0);
-			//BossLevel.bossTimer++;
 		}
 	
 		

@@ -9,7 +9,6 @@ import gameObject.Cannonball;
 import gameObject.Computer;
 
 import java.awt.BorderLayout;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -42,15 +41,7 @@ public class Game implements ActionListener{
 public static GameFrame frame;
 
 public static BattleField bfield = new BattleField();
-//public static ArrayList<Coin> coinList = new ArrayList<Coin>();
 public static List<Cannonball> cannonballList = Collections.synchronizedList(new ArrayList<Cannonball>());
-//public static ArrayList<Barrier> barrierList = new ArrayList<Barrier>();
-//public static ArrayList<HealthPacket> HPPList=new ArrayList<HealthPacket>();
-//public static ArrayList<GhostShip> GSList=new ArrayList<GhostShip>();
-//public static ArrayList<Whirlpool>whirlpoolList=new ArrayList<Whirlpool>();
-//public static ArrayList<Boss>bossList=new ArrayList<Boss>();
-//public static ArrayList<Fireball>fireballList=new ArrayList<Fireball>();
-//public static ArrayList<MonsterType> monsterTestList= new ArrayList<MonsterType>();
 public static StopWatch cannonwatch = new StopWatch();
 public static int Score=0;
 
@@ -69,10 +60,7 @@ static EndPanel ep = new EndPanel();
 
 		frame=new GameFrame();
 		
-		bf = new BattleField();
-		sp = new StartPanel();
-		 EndPanel ep = new EndPanel();
-		//BattleField bf = new BattleField();
+		
 		frame.getContentPane().add(sp);
 		frame.setVisible(true);
 		//startNewGame();
@@ -99,9 +87,6 @@ public static void startNewGame(){
 	bf.requestFocusInWindow();
 	
 	
-	//frame.getContentPane().remove(winScreen);
-	//frame.getContentPane().remove(gameOverScreen);
-
 	
  }
 public static void unpause(){

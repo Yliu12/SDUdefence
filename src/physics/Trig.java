@@ -2,11 +2,11 @@ package physics;
 
 import java.awt.Point;
 
-//import org.apache.log4j.Logger;
+
 
 
 public class Trig {
-	//Logger logger = Logger.getLogger(Trig.class);
+
 
 	public static int getAngleInDegrees(Point startingPoint, Point destination)
 	{

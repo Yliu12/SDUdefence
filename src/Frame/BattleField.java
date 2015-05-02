@@ -95,8 +95,6 @@ public BattleField(){
 	
 	this.setSize(GameFrame.DEFAULT_SIZE);
 	this.setLayout(null);
-	//this.setOpaque(false);
-	//this.addKeyListener(this);
 	this.addMouseListener(this);
 	this.setVisible(true);
 	this.setFocusable(true);
@@ -105,12 +103,11 @@ public BattleField(){
 	label.setIcon(new ImageIcon("C:\\Users\\YLIU12\\Desktop\\battleField.png"));
 	label.setBounds(0, 0, 540, 720);
 	add(label);
-	//repaint();
 }
 
 public void paint(Graphics g){
 	 super.paint(g);
-	//g.clearRect(0,0, 800, 1000);
+
 	drawComputer(g,Computer.getLocation());
 	drawCannonballs(g);
 	drawTestMonsters(g);
@@ -128,9 +125,7 @@ public void paint(Graphics g){
 		for (int n = 0; n < Game.monsterTestList.size(); n++) {
 			Image monsterImage = Game.monsterTestList.get(n).getImage();
 			Point monsterLocation = Game.monsterTestList.get(n).getLocation();
-			/*if (Game.monsterTestList.get(n) instanceof Jellyfin)
-				g.drawImage(monsterImage, (int) monsterLocation.getX(),
-						(int) monsterLocation.getY(), null);*/
+			
 
 		}
 	}
@@ -142,54 +137,7 @@ public void drawComputer(Graphics g, Point atPoint) {
 			null);
 	
 }
-	/*
-	@Override
-	public void keyPressed(KeyEvent e) {		
-		// TODO Auto-generated method stub
-		
-		int key = e.getKeyCode(); 
-		switch (key) {
-		case KeyEvent.VK_W: 
-			Computer.Ymove=-10;
-			break;
-		case KeyEvent.VK_S:
-			Computer.Ymove=+10;
-			break;
-		case KeyEvent.VK_A:
-			Computer.Xmove=-10;
-			break;
-		case KeyEvent.VK_D:
-			DPressed = true;
-			Computer.Xmove=+10;
-			break;
-		case KeyEvent.VK_J:{
-			
-		
-				//cannonClip.play();
-				Game.cannonwatch.reset();
-				Game.cannonwatch.start();
-				Cannonball cannon = new Cannonball(Computer.getCenter(), new Point(0,0));
-				synchronized (Game.cannonballList)
-				{
-				Game.cannonballList.add(cannon);
-				}
-				//logger.debug("cannonball angle " + Game.cannonballList.get(Game.cannonballList.size() - 1).angleInDegrees);
-			
-			
-			JPressed = true;
-			break;}
-		case KeyEvent.VK_K:		
-			KPressed = true;
-			break;		
-			
-			
-			
-			
-		}
 	
-	}
-	
-*/
 	public synchronized void drawCannonballs(Graphics g) {
 		for (int n = 0; n < Game.cannonballList.size(); n++) {
 			Cannonball cannonball = Game.cannonballList.get(n);

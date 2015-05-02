@@ -11,99 +11,92 @@ import javax.swing.ImageIcon;
 
 //import org.apache.log4j.Logger;
 
-
-
 import physics.Trig;
 //import Frame.DisplayFrame;
 import Frame.GameFrame;
 //import GameObjects.PirateShip;
 //import collectibles.Coin;
 
-public class MonsterSuper implements MonsterType{
-	//Logger logger = Logger.getLogger(MonsterSuper.class);
+public class MonsterSuper implements MonsterType {
+	// Logger logger = Logger.getLogger(MonsterSuper.class);
 
 	public static final String DEFAULT_IMAGE_LOCATION = "pic/monster.png";
-	public static final Image DEFAULT_IMAGE = new ImageIcon(DEFAULT_IMAGE_LOCATION).getImage();
+	public static final Image DEFAULT_IMAGE = new ImageIcon(
+			DEFAULT_IMAGE_LOCATION).getImage();
 	public static final String DEFAULT_IMAGE_LOCATION2 = "pic/monster.png";
-	public static final Image DEFAULT_IMAGE2 = new ImageIcon(DEFAULT_IMAGE_LOCATION2).getImage();
-	public static final int NUMBER_OF_POWERUPS=3;
-	public static final double POWER_UP_CHANCE=0.02;
-	public static final int HEALTH=1;
-	public static final int GHOST=2;
-	public static final int CANNON=3;
+	public static final Image DEFAULT_IMAGE2 = new ImageIcon(
+			DEFAULT_IMAGE_LOCATION2).getImage();
+	public static final int NUMBER_OF_POWERUPS = 3;
+	public static final double POWER_UP_CHANCE = 0.02;
+	public static final int HEALTH = 1;
+	public static final int GHOST = 2;
+	public static final int CANNON = 3;
 	public int Score = 10;
-	public int maxCoinsPerKill=4;
-	public int minCoinsPerKill=1;
+	public int maxCoinsPerKill = 4;
+	public int minCoinsPerKill = 1;
 	protected Image image;
 	protected Image image2;
 	protected Dimension dimensions;
 	protected Point location;
 	protected int angleInDegrees;
-	public double velocity=1.0;
-	protected int damage=1;
+	public double velocity = 1.0;
+	protected int damage = 1;
 	protected int count;
-	protected int phase=1;
-	protected int clockmax=20;
-	protected int phasemax=2;;
-	public int maxHP=1;
-	public int HP=maxHP;
+	protected int phase = 1;
+	protected int clockmax = 20;
+	protected int phasemax = 2;;
+	public int maxHP = 1;
+	public int HP = maxHP;
 	public boolean givesPowerup;
- 
-	
-	
-	public MonsterSuper(Point startingPoint)
-	{
-		image=DEFAULT_IMAGE;
-		image2=DEFAULT_IMAGE;
-		location=startingPoint;
-		count=0;
-		givesPowerup=false;
+
+	public MonsterSuper(Point startingPoint) {
+		image = DEFAULT_IMAGE;
+		image2 = DEFAULT_IMAGE;
+		location = startingPoint;
+		count = 0;
+		givesPowerup = false;
 	}
+
 	public static Point getRandomSpawnLocation() {
 		Point location = new Point();
 		int x;
 		int y;
-		
-		int maxY =(int) (GameFrame.DEFAULT_SIZE.getHeight()- DEFAULT_IMAGE.getHeight(null)-20);
-		int minY =0;
-		int maxX = (int) (GameFrame.DEFAULT_SIZE.getWidth()- DEFAULT_IMAGE.getWidth(null)-60);
-		int minX=0;
-		
+
+		int maxY = (int) (GameFrame.DEFAULT_SIZE.getHeight()
+				- DEFAULT_IMAGE.getHeight(null) - 20);
+		int minY = 0;
+		int maxX = (int) (GameFrame.DEFAULT_SIZE.getWidth()
+				- DEFAULT_IMAGE.getWidth(null) - 60);
+		int minX = 0;
+
 		double random = Math.random();
-		
+
 		double random2 = Math.random();
-		if(random<=0.25)
-		{
-		x= (int) (random2*(double) maxX);
-			y=maxY;
+		if (random <= 0.25) {
+			x = (int) (random2 * (double) maxX);
+			y = maxY;
+		} else if (random <= .5) {
+			x = (int) (random2 * maxX);
+			y = minY;
+		} else if (random <= .75) {
+			x = maxX;
+			y = (int) (random2 * maxY);
+		} else {
+			x = minX;
+			y = (int) (random2 * maxY);
 		}
-		else if(random<=.5)
-		{
-			x=(int) (random2*maxX);
-			y=minY;
-		}
-		else if(random<=.75)
-		{
-			x=maxX;
-			y=(int)(random2*maxY);
-		}
-		else
-		{
-			x=minX;
-			y=(int)(random2*maxY);
-		}
-		
+
 		location.setLocation(x, 70);
 		return location;
-			
+
 	}
 
 	@Override
 	public Image getImage() {
-		if(phase==1)
-		return image;
+		if (phase == 1)
+			return image;
 		else
-		return image2;
+			return image2;
 	}
 
 	@Override
@@ -114,8 +107,8 @@ public class MonsterSuper implements MonsterType{
 	@Override
 	public Point getCenter() {
 		Point center = new Point();
-		int x= (int) (location.getX()+image.getWidth(null)/2);
-		int y=(int) (location.getY()+image.getHeight(null)/2);
+		int x = (int) (location.getX() + image.getWidth(null) / 2);
+		int y = (int) (location.getY() + image.getHeight(null) / 2);
 		center.setLocation(x, y);
 		return center;
 	}
@@ -137,16 +130,16 @@ public class MonsterSuper implements MonsterType{
 
 	@Override
 	public Point getNextMove() {
-		Point nextMove=new Point();
-		angleInDegrees=getDirection();
-		nextMove=Trig.getNextMoveAtAngle(location, angleInDegrees, velocity);
+		Point nextMove = new Point();
+		angleInDegrees = getDirection();
+		nextMove = Trig.getNextMoveAtAngle(location, angleInDegrees, velocity);
 		return nextMove;
 	}
 
 	@Override
 	public void setLocationAfterMovement() {
-		location=getNextMove();
-		
+		location = getNextMove();
+
 	}
 
 	@Override
@@ -159,163 +152,102 @@ public class MonsterSuper implements MonsterType{
 
 		return monsterRect;
 	}
+
 	public boolean isOutOfBounds() {
-	boolean outOfBounds = false;
+		boolean outOfBounds = false;
 		{
 			int x = (int) location.getX();
 			int y = (int) location.getY();
-			if(x>GameFrame.DEFAULT_SIZE.getWidth()- DEFAULT_IMAGE.getWidth(null)-50||x<=0)
+			if (x > GameFrame.DEFAULT_SIZE.getWidth()
+					- DEFAULT_IMAGE.getWidth(null) - 50
+					|| x <= 0)
 				outOfBounds = true;
-			if(y>GameFrame.DEFAULT_SIZE.getHeight()-DEFAULT_IMAGE.getHeight(null)-50||y<=0)
+			if (y > GameFrame.DEFAULT_SIZE.getHeight()
+					- DEFAULT_IMAGE.getHeight(null) - 50
+					|| y <= 0)
 				outOfBounds = true;
 			return outOfBounds;
 		}
-		
-		
+
 	}
+
 	@Override
-	public boolean isAtBottom()
-	{
-		boolean atBase =false;
-		
+	public boolean isAtBottom() {
+		boolean atBase = false;
+
 		int y = (int) location.getY();
-		
-		if(y>GameFrame.DEFAULT_SIZE.getHeight()- DEFAULT_IMAGE.getHeight(null))
+
+		if (y > GameFrame.DEFAULT_SIZE.getHeight()
+				- DEFAULT_IMAGE.getHeight(null))
 			atBase = true;
 		return atBase;
 	}
-	
-/*	@Override
-	public Coin[] getLoot() {
-		double coinRandom = Math.random();
-		double powerUpRandom = Math.random();
-		givesPowerup=false;
-		int numberCoins;
-		numberCoins=(int) (minCoinsPerKill+coinRandom*(maxCoinsPerKill+2-minCoinsPerKill)-.005);
-		if(powerUpRandom<=POWER_UP_CHANCE)
-			{
-				numberCoins=0;
-				givesPowerup=true;
-			}
-		Coin[] loot= new Coin[numberCoins];
 
-		int minX=(int) getLocation().getX();
-		int minY=(int) getLocation().getY();
-		int maxX=(int) getLocation().getX()+getWidth();
-		int maxY=(int) getLocation().getY()+getHeight();
-		
-		Point p = new Point();
-		Point p2 = new Point();
-		Point p3 = new Point();
-		Point p4 = new Point();
-			switch(numberCoins)
-			{	case 0: givesPowerup=true;
-				break;
-				
-				case 1: loot[0] = new Coin(getCenter());
-				break;
-			
-				case 2:	p.setLocation(minX,minY);
-				loot[0] = new Coin(p);
-				p2.setLocation(maxX-Coin.IMAGE.getWidth(null),minY);
-				loot[1] = new Coin(p2);
-				break;
-				
-				case 3:	p.setLocation(minX,minY);
-				loot[0] = new Coin(p);
-				p2.setLocation(maxX-Coin.IMAGE.getWidth(null),minY);
-				loot[1] = new Coin(p2);
-				p3.setLocation(minX+getWidth()/2-Coin.IMAGE.getWidth(null)/2, maxY-getHeight()/2);
-				loot[2]= new Coin(p3);
-				break;
-				
-				case 4: p.setLocation(minX,minY);
-				loot[0] = new Coin(p);
-				p2.setLocation(maxX-Coin.IMAGE.getWidth(null),minY);
-				loot[1] = new Coin(p2);
-				p3.setLocation(minX, maxY-getHeight()/2);
-				loot[2]= new Coin(p3);
-				p4.setLocation(maxX-Coin.IMAGE.getWidth(null), maxY-getHeight()/2);
-				loot[3]= new Coin(p4);
-				break;
-				default:  
-					for(int n=1; n<=numberCoins; n++)
-					{
-						loot[n-1] = new Coin(getCenter());
-					}
-				break;
-			}
+	public void getChangeFactor() {
 
-		return loot;
-	}*/
-	public void  getChangeFactor()
-	{
-		
 	}
+
 	@Override
-	public boolean hasPowerUp()
-	{
+	public boolean hasPowerUp() {
 		return givesPowerup;
 	}
+
 	@Override
 	public int getPowerUp() {
-		if(givesPowerup=true)
-		{
-		double random=Math.random();
-		return (int) (random*NUMBER_OF_POWERUPS-.005);
-		}
-		else return 0;
+		if (givesPowerup = true) {
+			double random = Math.random();
+			return (int) (random * NUMBER_OF_POWERUPS - .005);
+		} else
+			return 0;
 	}
 
-	public int getDamage()
-	{
+	public int getDamage() {
 		return damage;
 	}
-	public int getHP()
-	{
+
+	public int getHP() {
 		return HP;
 	}
-	
-	public int getMaxHP()
-	{
+
+	public int getMaxHP() {
 		return maxHP;
 	}
-	
-	public void takeDamage(int damage)
-	{
-		HP-=damage;
+
+	public void takeDamage(int damage) {
+		HP -= damage;
 	}
-	
-	public boolean isDead()
-	{
-		if (HP<=0)
+
+	public boolean isDead() {
+		if (HP <= 0)
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	public void phaseShift()
-	{
+
+	public void phaseShift() {
 		count++;
 		getChangeFactor();
-		if(count%clockmax==0)
+		if (count % clockmax == 0)
 			phase++;
-		if (phase>phasemax)
-			phase=1;
+		if (phase > phasemax)
+			phase = 1;
 	}
+
 	@Override
 	public void setVelocity(int i) {
-		velocity=i;
-		
+		velocity = i;
+
 	}
+
 	@Override
-	public void setHealth(int i)
-	{
-		HP=i;
+	public void setHealth(int i) {
+		HP = i;
 	}
+
 	@Override
 	public int getScore() {
 		// TODO Auto-generated method stub
 		return Score;
 	}
 
-	
 }
