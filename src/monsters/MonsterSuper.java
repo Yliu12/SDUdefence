@@ -1,25 +1,18 @@
 package monsters;
-
 import gameObject.Computer;
-
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
-
 import javax.swing.ImageIcon;
 
-//import org.apache.log4j.Logger;
-
 import physics.Trig;
-//import Frame.DisplayFrame;
+
 import Frame.GameFrame;
-//import GameObjects.PirateShip;
-//import collectibles.Coin;
+
 
 public class MonsterSuper implements MonsterType {
-	// Logger logger = Logger.getLogger(MonsterSuper.class);
-
+	
 	public static final String DEFAULT_IMAGE_LOCATION = "pic/monster.png";
 	public static final Image DEFAULT_IMAGE = new ImageIcon(
 			DEFAULT_IMAGE_LOCATION).getImage();
@@ -48,7 +41,6 @@ public class MonsterSuper implements MonsterType {
 	public int maxHP = 1;
 	public int HP = maxHP;
 	public boolean givesPowerup;
-
 	public MonsterSuper(Point startingPoint) {
 		image = DEFAULT_IMAGE;
 		image2 = DEFAULT_IMAGE;
@@ -56,21 +48,17 @@ public class MonsterSuper implements MonsterType {
 		count = 0;
 		givesPowerup = false;
 	}
-
 	public static Point getRandomSpawnLocation() {
 		Point location = new Point();
 		int x;
 		int y;
-
 		int maxY = (int) (GameFrame.DEFAULT_SIZE.getHeight()
 				- DEFAULT_IMAGE.getHeight(null) - 20);
 		int minY = 0;
 		int maxX = (int) (GameFrame.DEFAULT_SIZE.getWidth()
 				- DEFAULT_IMAGE.getWidth(null) - 60);
 		int minX = 0;
-
 		double random = Math.random();
-
 		double random2 = Math.random();
 		if (random <= 0.25) {
 			x = (int) (random2 * (double) maxX);
@@ -85,12 +73,9 @@ public class MonsterSuper implements MonsterType {
 			x = minX;
 			y = (int) (random2 * maxY);
 		}
-
 		location.setLocation(x, 70);
 		return location;
-
 	}
-
 	@Override
 	public Image getImage() {
 		if (phase == 1)
@@ -98,12 +83,10 @@ public class MonsterSuper implements MonsterType {
 		else
 			return image2;
 	}
-
 	@Override
 	public Point getLocation() {
 		return location;
 	}
-
 	@Override
 	public Point getCenter() {
 		Point center = new Point();
@@ -112,22 +95,18 @@ public class MonsterSuper implements MonsterType {
 		center.setLocation(x, y);
 		return center;
 	}
-
 	@Override
 	public int getWidth() {
 		return image.getWidth(null);
 	}
-
 	@Override
 	public int getHeight() {
 		return image.getHeight(null);
 	}
-
 	@Override
 	public int getDirection() {
 		return Trig.getAngleInDegrees(location, Computer.Location);
 	}
-
 	@Override
 	public Point getNextMove() {
 		Point nextMove = new Point();
@@ -135,13 +114,10 @@ public class MonsterSuper implements MonsterType {
 		nextMove = Trig.getNextMoveAtAngle(location, angleInDegrees, velocity);
 		return nextMove;
 	}
-
 	@Override
 	public void setLocationAfterMovement() {
 		location = getNextMove();
-
 	}
-
 	@Override
 	public Rectangle getRect() {
 		int x = (int) location.getX();
@@ -149,10 +125,8 @@ public class MonsterSuper implements MonsterType {
 		int width = getWidth();
 		int height = getHeight();
 		Rectangle monsterRect = new Rectangle(x, y, width, height);
-
 		return monsterRect;
 	}
-
 	public boolean isOutOfBounds() {
 		boolean outOfBounds = false;
 		{
@@ -168,30 +142,22 @@ public class MonsterSuper implements MonsterType {
 				outOfBounds = true;
 			return outOfBounds;
 		}
-
 	}
-
 	@Override
 	public boolean isAtBottom() {
 		boolean atBase = false;
-
 		int y = (int) location.getY();
-
 		if (y > GameFrame.DEFAULT_SIZE.getHeight()
 				- DEFAULT_IMAGE.getHeight(null))
 			atBase = true;
 		return atBase;
 	}
-
 	public void getChangeFactor() {
-
 	}
-
 	@Override
 	public boolean hasPowerUp() {
 		return givesPowerup;
 	}
-
 	@Override
 	public int getPowerUp() {
 		if (givesPowerup = true) {
@@ -200,30 +166,24 @@ public class MonsterSuper implements MonsterType {
 		} else
 			return 0;
 	}
-
 	public int getDamage() {
 		return damage;
 	}
-
 	public int getHP() {
 		return HP;
 	}
-
 	public int getMaxHP() {
 		return maxHP;
 	}
-
 	public void takeDamage(int damage) {
 		HP -= damage;
 	}
-
 	public boolean isDead() {
 		if (HP <= 0)
 			return true;
 		else
 			return false;
 	}
-
 	public void phaseShift() {
 		count++;
 		getChangeFactor();
@@ -232,22 +192,17 @@ public class MonsterSuper implements MonsterType {
 		if (phase > phasemax)
 			phase = 1;
 	}
-
 	@Override
 	public void setVelocity(int i) {
 		velocity = i;
-
 	}
-
 	@Override
 	public void setHealth(int i) {
 		HP = i;
 	}
-
 	@Override
 	public int getScore() {
-		// TODO Auto-generated method stub
+		
 		return Score;
 	}
-
 }

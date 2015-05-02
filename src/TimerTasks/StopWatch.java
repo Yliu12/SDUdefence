@@ -1,27 +1,21 @@
 package TimerTasks;
-
 public class StopWatch {
-
   private long startTime = 0;
   private long stopTime = 0;
   private boolean running = false;
-
   public void start() {
     this.startTime = System.currentTimeMillis();
     this.running = true;
   }
-
   public void stop() {
     this.stopTime = System.currentTimeMillis();
     this.running = false;
   }
-  
   public void reset(){
 	  this.stop();
 	  this.startTime = 0;
 	  this.stopTime = 0;
   }
-
   public long getElapsedTime() {
     long elapsed;
     if (running) {
@@ -32,7 +26,6 @@ public class StopWatch {
     }
     return elapsed;
   }
-
   public long getElapsedTimeSecs() {
     long elapsed;
     if (running) {
