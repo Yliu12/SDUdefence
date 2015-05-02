@@ -96,7 +96,7 @@ public class CollisionChecker {
 			
 			if (m.isOutOfBounds()) {
 				Game.monsterTestList.remove(m);
-				System.out.println(Computer.currentHP);
+				//System.out.println(Computer.currentHP);
 				//logger.info("remove cannonball");
 			} 
 		}
@@ -107,7 +107,7 @@ public class CollisionChecker {
 			if (m.isAtBottom()){
 				Computer.currentHP--;
 				Game.monsterTestList.remove(m);
-				System.out.println(Computer.currentHP );
+				//System.out.println(Computer.currentHP );
 			}
 		
 		}
@@ -159,7 +159,8 @@ public class CollisionChecker {
 				if (!Computer.getIfgetComputer()){
 					Computer.currentHP -= Game.monsterTestList.get(n)
 							.getDamage();
-				System.out.println(Computer.currentHP);}
+			//	System.out.println(Computer.currentHP);
+					}
 				else {
 					Computer.HitTimesOfMonsters++;
 					
@@ -171,14 +172,15 @@ public class CollisionChecker {
 				Game.monsterTestList.remove(m);
 			//	logger.info("HP = " + Computer.currentHP);
 				
-					//Game.gameOver();
+					
 			} else
 				n++;
 		}
 		
-		if (!Computer.isAlive())
-			Game.phase = 0;
-			
+		if (!Computer.isAlive()){
+		//	System.out.print("++++"+Game.Score);
+			IOScore.WriteScore(Game.Score);
+			Game.gameOver();}
 			
 	}
 

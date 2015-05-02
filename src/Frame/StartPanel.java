@@ -67,7 +67,7 @@ public class StartPanel extends JPanel {
 		btnClose.setContentAreaFilled(false);
 		btnClose.setBorderPainted(false);
 		btnClose.setVisible(false);
-		btnClose.setIcon(new ImageIcon("pic/hi.png"));
+		btnClose.setIcon(new ImageIcon("pic/Close.png"));
 		btnClose.setBounds(414, 375, 30, 30);
 		add(btnClose);
 		

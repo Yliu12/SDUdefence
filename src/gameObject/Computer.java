@@ -40,6 +40,7 @@ public class Computer {
 	
 
 	public static final int DIRECTION_CODE_UP = 1;
+	public static final int START_HP = 7;
 	public static final int DIRECTION_CODE_DOWN = 2;
 	public static final int DIRECTION_CODE_LEFT = 3;
 	public static final int DIRECTION_CODE_RIGHT = 4;
@@ -56,7 +57,7 @@ public class Computer {
 
 	public static int HitTimesOfMonsters;
 
-	public static int currentHP=7;
+	public static int currentHP = START_HP;
 	
 public Computer(){
 

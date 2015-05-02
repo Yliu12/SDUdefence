@@ -4,6 +4,11 @@ import gameObject.Cannonball;
 
 
 
+
+
+import gameObject.Computer;
+
+import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,9 +21,13 @@ import java.util.Timer;
 
 
 
+
+
+
 import monsters.MonsterType;
 import monsters.TestMonster;
 import Frame.BattleField;
+import Frame.EndPanel;
 import Frame.GameFrame;
 import Frame.StartPanel;
 import TimerTasks.SpawnTask;
@@ -55,11 +64,14 @@ public static TestMonster monsterTest = new TestMonster(GameFrame.getCenter());
 
 static BattleField bf = new BattleField();
 static StartPanel sp = new StartPanel();
+static EndPanel ep = new EndPanel();
 	public static void main(String[] args){
 
 		frame=new GameFrame();
 		
-		
+		bf = new BattleField();
+		sp = new StartPanel();
+		 EndPanel ep = new EndPanel();
 		//BattleField bf = new BattleField();
 		frame.getContentPane().add(sp);
 		frame.setVisible(true);
@@ -71,19 +83,25 @@ static StartPanel sp = new StartPanel();
 	
 public static void startNewGame(){
 	Score = 0;
+	phase = 1;
 	timer = new Timer();
 	cannonwatch = new StopWatch();
+	Computer.currentHP= Computer.START_HP;
 	timer.schedule(new MyTimerEvents(), 0, 15l);
 	timer.schedule(new SpawnTask(), 1000, 1000);
 	frame.getContentPane().remove(bf);
+	frame.getContentPane().remove(ep);
+	frame.getContentPane().remove(sp);
+	frame.validate();   
+	frame.repaint();
 	bf = new BattleField();
 	frame.getContentPane().add(bf, 0);
 	bf.requestFocusInWindow();
-	phase = 1;
-	frame.getContentPane().remove(sp);
+	
+	
 	//frame.getContentPane().remove(winScreen);
 	//frame.getContentPane().remove(gameOverScreen);
-	frame.repaint();
+
 	
  }
 public static void unpause(){
@@ -101,5 +119,24 @@ public void actionPerformed(ActionEvent e) {
 	if (e.getActionCommand().equals("cycle")) {
 	}
 	
+}
+
+
+public static void gameOver() {
+	
+
+		
+	phase =0;
+	frame.getContentPane().remove(bf);
+	ep.setScore();
+	frame.getContentPane().add(ep, BorderLayout.CENTER, 0);
+	frame.validate();   
+	frame.repaint();
+
+	timer.cancel();
+	cannonwatch.reset();
+	monsterTestList.clear();	
+	cannonballList.clear();
+
 }
 }

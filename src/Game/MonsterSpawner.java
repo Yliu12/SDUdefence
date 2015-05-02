@@ -12,9 +12,8 @@ import monsters.TestMonster;
 	
 	public static void spawnWave(int difficulty, int ID)
 	{
-		if (ID==100)
-			spawnWaveDifficulty100();
-		else if (ID==0)
+		
+		 if (ID==0)
 		addRandom(difficulty);
 		else if(ID>=1 &&ID<=3)
 			addID(difficulty, ID);

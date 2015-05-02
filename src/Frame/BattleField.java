@@ -4,13 +4,12 @@ import gameObject.Cannonball;
 import gameObject.Computer;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 
 
@@ -65,7 +64,7 @@ public BattleField(){
 	lblScore.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	lblScore.setForeground(Color.WHITE);
 	lblScore.setText(Game.Score+"");
-	lblScore.setBounds(30, 30, 100, 30);
+	lblScore.setBounds(30, 30, 199, 30);
 	lblHP.setBounds(30, 50, 100, 30);
 	lblHP.setVisible(true);
 	this.add(lblHP);
