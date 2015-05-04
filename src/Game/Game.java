@@ -1,3 +1,14 @@
+	/*
+	 * @author  Ying Liu @E-mail:yliu12@bsu.edu
+	 * Image by Chuxi Liang 
+	 * Ball State University
+	 * Shandong University at Weihai
+	 * 
+	 * 
+	 * */
+
+
+
 package Game;
 import gameObject.Cannonball;
 import gameObject.Computer;
@@ -30,7 +41,16 @@ public static TestMonster monsterTest = new TestMonster(GameFrame.getCenter());
 static BattleField bf = new BattleField();
 static StartPanel sp = new StartPanel();
 static EndPanel ep = new EndPanel();
-	public static void main(String[] args){
+
+
+
+
+
+public static void main(String[] args){
+		
+		
+		
+		
 		frame=new GameFrame();
 		frame.getContentPane().add(sp);
 		frame.setVisible(true);

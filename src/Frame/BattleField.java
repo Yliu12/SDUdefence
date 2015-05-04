@@ -65,7 +65,7 @@ public BattleField(){
 	this.setVisible(true);
 	this.setFocusable(true);
 	JLabel label = new JLabel("");
-	label.setIcon(new ImageIcon("C:\\Users\\YLIU12\\Desktop\\battleField.png"));
+	label.setIcon(new ImageIcon("Pic/battleField.png"));
 	label.setBounds(0, 0, 540, 720);
 	add(label);
 }

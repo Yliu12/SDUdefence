@@ -65,7 +65,7 @@ public class EndPanel extends JPanel {
  btnRetry.setBounds(206, 604, 150, 50);
  add(btnRetry);
  JLabel lblNewLabel = new JLabel("");
- lblNewLabel.setIcon(new ImageIcon("C:\\Users\\YLIU12\\Desktop\\End.png"));
+ lblNewLabel.setIcon(new ImageIcon("Pic/End.png"));
  lblNewLabel.setBounds(0, 0, 540, 720);
  add(lblNewLabel);
  ScorelblList.add(lblScore1);
