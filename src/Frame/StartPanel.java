@@ -43,7 +43,7 @@ public class StartPanel extends JPanel {
 		ChoosePanel.setLayout(null);
 		final JButton btn1 = new JButton("");
 		btn1.setIcon(new ImageIcon("pic/debugger1.png"));
-		btn1.setBounds(189, 75, 50, 50);
+		btn1.setBounds(189, 75, 100,100);
 		ChoosePanel.add(btn1);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,7 @@ public class StartPanel extends JPanel {
 		});
 		final JButton btn2 = new JButton("");
 		btn2.setIcon(new ImageIcon("pic/debugger2.png"));
-		btn2.setBounds(78, 181, 50, 50);
+		btn2.setBounds(78, 181, 100, 100);
 		ChoosePanel.add(btn2);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -63,7 +63,7 @@ public class StartPanel extends JPanel {
 		});
 		final JButton btn3 = new JButton("");
 		btn3.setIcon(new ImageIcon("pic/debugger3.png"));
-		btn3.setBounds(305, 181, 50, 50);
+		btn3.setBounds(305, 181, 100,100);
 		ChoosePanel.add(btn3);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
